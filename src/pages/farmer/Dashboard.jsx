@@ -20,6 +20,28 @@ const mockData = {
   },
 };
 
+const mockChartData = {
+  Ananas1: {
+    "Température du sol": [
+      { date: "14 mai", valeur: 22 },
+      { date: "15 mai", valeur: 21 },
+      { date: "16 mai", valeur: 23 },
+      { date: "17 mai", valeur: 22 },
+    ],
+    "Température de l’air": [ { date: "14 mai", valeur: 23 },
+      { date: "15 mai", valeur: 22 },
+      { date: "16 mai", valeur: 13 },
+      { date: "17 mai", valeur: 32 },],
+   
+  },
+  Ananas2: {
+    "Température du sol": [{ date: "14 mai", valeur: 12 },
+      { date: "15 mai", valeur: 11 },
+      { date: "16 mai", valeur: 13 },
+      { date: "17 mai", valeur: 12 }, ],
+    // etc.
+  }
+};
 
 
 
@@ -29,6 +51,8 @@ const [sidebarOpen, setSidebarOpen] = useState(true);
 const [selectedCulture, setSelectedCulture] = useState(activeCultures[0]);
 const [selectedDate, setSelectedDate] = useState("2025-05-20");
 const selectedData = mockData[selectedCulture]?.[selectedDate] || {};
+const chartDataByParameter = mockChartData[selectedCulture] || {};
+
 
 const dataCards = [
   { icon: "🌡️", label: "Température du sol", key: "temp_sol", value: selectedData.temp_sol ?? "-", unit: "°C" },
@@ -48,7 +72,7 @@ const dataCards = [
     <div className="flex min-h-screen bg-gray-50">
       <Sidebar isOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
      <main className="flex-1 p-6 bg-white w-full overflow-hidden">
-        <Headerboard 
+        <Headerboard
   farmerName="Agriculteur"
   activeCultures={activeCultures}
   selectedCulture={selectedCulture}
@@ -73,6 +97,7 @@ const dataCards = [
        <ChartsCarousel 
   culture={selectedCulture}
   date={selectedDate}
+  chartData={chartDataByParameter}
 />
 
       </main>

@@ -11,54 +11,9 @@ const parametres = [
   "Qualité de l’air"
 ];
 
-// Données simulées pour chaque paramètre (à remplacer plus tard par les données du backend)
-const mockData = {
-  "Température du sol": [
-    { date: "14 mai", valeur: 20 },
-    { date: "15 mai", valeur: 22 },
-    { date: "16 mai", valeur: 19 },
-    { date: "17 mai", valeur: 21 },
-    { date: "18 mai", valeur: 23 },
-  ],
-  "Température de l’air": [
-    { date: "14 mai", valeur: 25 },
-    { date: "15 mai", valeur: 26 },
-    { date: "16 mai", valeur: 24 },
-    { date: "17 mai", valeur: 27 },
-    { date: "18 mai", valeur: 28 },
-  ],
-  "Humidité du sol": [
-    { date: "14 mai", valeur: 55 },
-    { date: "15 mai", valeur: 58 },
-    { date: "16 mai", valeur: 53 },
-    { date: "17 mai", valeur: 60 },
-    { date: "18 mai", valeur: 62 },
-  ],
-  "Humidité de l’air": [
-    { date: "14 mai", valeur: 45 },
-    { date: "15 mai", valeur: 50 },
-    { date: "16 mai", valeur: 48 },
-    { date: "17 mai", valeur: 52 },
-    { date: "18 mai", valeur: 49 },
-  ],
-  "pH du sol": [
-    { date: "14 mai", valeur: 6.5 },
-    { date: "15 mai", valeur: 6.6 },
-    { date: "16 mai", valeur: 6.4 },
-    { date: "17 mai", valeur: 6.7 },
-    { date: "18 mai", valeur: 6.5 },
-  ],
-  "Qualité de l’air": [
-    { date: "14 mai", valeur: 80 },
-    { date: "15 mai", valeur: 78 },
-    { date: "16 mai", valeur: 82 },
-    { date: "17 mai", valeur: 79 },
-    { date: "18 mai", valeur: 81 },
-  ]
-};
-
-export default function DashboardGraph() {
+export default function DashboardGraph(chartData) {
   const [parametreActif, setParametreActif] = useState("Température du sol");
+  const data = chartData?.[parametreActif] || [];
 
   return (
     <div className="p-4">
@@ -83,7 +38,7 @@ export default function DashboardGraph() {
       <div className="w-full h-50 bg-white rounded-xl shadow p-2">
         <h2 className="text-lg font-semibold mb-4">{parametreActif}</h2>
         <ResponsiveContainer width="100%" height="100%">
-          <LineChart data={mockData[parametreActif]}>
+          <LineChart data={data}>
             <XAxis dataKey="date" />
             <YAxis />
             <Tooltip />
