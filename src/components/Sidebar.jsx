@@ -19,7 +19,7 @@ const Sidebar = () => {
   return (
     <aside
       className={`
-        h-screen bg-white border-r border-gray-100 shadow-md
+        min-h-screen bg-white border-r border-gray-100 shadow-md
         flex flex-col
         transition-all duration-300
         ${isOpen ? "w-52" : "w-16"}
@@ -37,7 +37,7 @@ const Sidebar = () => {
         </button>
       </div>
 
-      {/* Recherche */}
+      {/* Recherche 
       {isOpen && (
         <div className="p-2">
           <input
@@ -47,6 +47,7 @@ const Sidebar = () => {
           />
         </div>
       )}
+        */}
 
       {/* Navigation */}
       <nav className="mt-4 flex flex-col gap-2 px-2 flex-1">

@@ -2,6 +2,7 @@ import { useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react'; // icônes menu et fermeture
 import logo from '../assets/logo.png';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   const location = useLocation();
@@ -12,8 +13,10 @@ const Header = () => {
     <header className="bg-[#284411] text-light border-b-[1px] border-accent py-2 relative z-50">
       <div className="container mx-auto px-4 flex justify-between items-center">
         
-        {/* Logo */}
-        <img src={logo} alt="Logo" className="h-14" />
+       {/* Logo cliquable */}
+  <Link to="/">
+    <img src={logo} alt="Logo" className="h-14" />
+  </Link>
 
         {/* Menu hamburger (mobile) */}
         {isHomePage && (

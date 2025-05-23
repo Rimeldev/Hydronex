@@ -1,7 +1,6 @@
 import ananasImg from '../assets/ananas.png';
 import instiImg from '../assets/insti.png';
 import unstimImg from '../assets/unstim.png';
-import videoDemo from '../assets/demo.mp4';
 import Header from '../components/Header';
 import { MapPin, Phone } from "lucide-react";
 
@@ -41,13 +40,16 @@ export default function Home() {
             <h2 className="text-xl font-bold mb-2">COMMENT SCANNER VOTRE ANANAS</h2>
             <div className="w-60 h-1 bg-green-600 mx-auto mt-3" />
             <div className="w-24 h-1 bg-primary mx-auto mb-10" />
-            <div className="flex justify-center">
-              <video
-                src={videoDemo}
-                controls
-                className="rounded-lg shadow-lg w-full max-w-md sm:max-w-lg md:max-w-2xl"
-              />
-            </div>
+          <div className="flex justify-center">
+            <iframe
+              className="w-full max-w-md sm:max-w-lg md:max-w-2xl rounded-lg shadow-lg aspect-video"
+              src="https://www.youtube.com/embed/ZiBszp0uGk8"
+              title="Tutoriel vidéo"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+
           </div>
         </div>
       </div>
