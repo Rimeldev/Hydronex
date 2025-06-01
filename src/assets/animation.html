@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Animation Ananas</title>
+  <style>
+    body {
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .container {
+      position: relative;
+      width: 600px;
+      height: 400px;
+    }
+
+    .ananas {
+      position: absolute;
+      width: 300px;
+      animation: rotateAnanas 6s linear infinite;
+      z-index: 2;
+    }
+
+    .reseau {
+      position: absolute;
+      left: 200px;
+      top: 50px;
+      width: 400px;
+      animation: ondulation 4s ease-in-out infinite alternate;
+      z-index: 1;
+    }
+
+    @keyframes rotateAnanas {
+      from {
+        transform: rotateY(0deg);
+      }
+      to {
+        transform: rotateY(360deg);
+      }
+    }
+
+    @keyframes ondulation {
+      0% {
+        transform: translateY(0px);
+        filter: hue-rotate(0deg);
+      }
+      100% {
+        transform: translateY(10px);
+        filter: hue-rotate(20deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img class="ananas" src="2.png" alt="Ananas 3D" />
+    <img class="reseau" src="3.png" alt="Maillage" />
+  </div>
+</body>
+</html>

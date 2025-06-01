@@ -2,7 +2,9 @@ import ananasImg from '../assets/ananas.png';
 import instiImg from '../assets/insti.png';
 import unstimImg from '../assets/unstim.png';
 import Header from '../components/Header';
+import '../index.css';
 import { MapPin, Phone } from "lucide-react";
+
 
 export default function Home() {
   return (
@@ -18,7 +20,7 @@ export default function Home() {
             <img
               src={ananasImg}
               alt="Ananas"
-              className="w-[250px] md:w-auto -mt-10 md:-mt-10 -ml-0 md:-ml-10 object-contain"
+              className="w-[250px] md:w-auto -mt-10 md:-mt-10 -ml-0 md:-ml-10 object-contain animate-ondulation"
             />
 
             {/* Texte d'accueil */}
