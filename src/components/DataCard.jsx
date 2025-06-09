@@ -1,11 +1,24 @@
-import 'swiper/css';
+// src/components/DataCard.jsx
 
-const DataCard = ({ icon, label, value, unit }) =>  {
-     return (
-  <div className="bg-[#CBD5C0] rounded shadow p-4 w-40">
-    <div className="text-3xl">{icon}</div>
-    <p className="font-bold text-xl">{value}{unit}</p>
-    <p className="text-sm text-gray-700">{label}</p>
-  </div>
-); };
+const DataCard = ({ icon, label, value, unit, bgColor = "#E0F2FE" }) => {
+  return (
+    <div
+      className="rounded-xl shadow-md px-4 py-6 w-40 text-center"
+      style={{ backgroundColor: bgColor }}
+    >
+      {/* Icône */}
+      <div className="text-4xl text-blue-600 mb-2 flex justify-center">{icon}</div>
+
+      {/* Valeur */}
+      <div className="text-xl font-semibold text-gray-800">
+        {value}
+        <span className="text-sm font-normal">{unit}</span>
+      </div>
+
+      {/* Label */}
+      <p className="text-sm text-gray-600 mt-1">{label}</p>
+    </div>
+  );
+};
+
 export default DataCard;
