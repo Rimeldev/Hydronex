@@ -1,22 +1,24 @@
 import { useState } from "react";
 import DashboardIcon from "../assets/icons/dashboard.png";
 import DevicesIcon from "../assets/icons/devices.png";
-import RecommendationsIcon from "../assets/icons/recommendation.png";
+import AlertIcon from "../assets/icons/alert.png";
 import SupportIcon from "../assets/icons/support.png";
 import HydroBotIcon from "../assets/icons/hydrobot.png";
 import logo from "../assets/logo.png";
 import toggleIcon from "../assets/icons/toggleIcon.png";
+import { NavLink } from "react-router-dom";
+
 
 const navItems = [
-  { id: "dashboard", label: "Dashboard", icon: DashboardIcon },
-  { id: "devices", label: "Devices", icon: DevicesIcon },
-  { id: "recommendations", label: "Recommendations", icon: RecommendationsIcon },
-  { id: "supports", label: "Supports", icon: SupportIcon },
-  { id: "hydrobot", label: "HydroBot", icon: HydroBotIcon },
+  { id: "dashboard", label: "Dashboard", icon: DashboardIcon, path: "/dashboard" },
+  { id: "devices", label: "Devices", icon: DevicesIcon, path: "/devices" },
+  { id: "alerts", label: "Alerts", icon: AlertIcon, path: "/Recommendations" },
+  { id: "supports", label: "Supports", icon: SupportIcon, path: "/supports" },
+  { id: "hydrobot", label: "HydroBot", icon: HydroBotIcon, path: "/hydrobot" },
 ];
 
+
 export default function Sidebar() {
-  const [active, setActive] = useState("dashboard");
   const [isOpen, setIsOpen] = useState(true);
   const toggleSidebar = () => setIsOpen(!isOpen);
 
@@ -43,16 +45,18 @@ export default function Sidebar() {
       {/* Navigation */}
       <nav className="flex flex-col gap-3 px-2">
         {navItems.map((item) => (
-          <button
-            key={item.id}
-            onClick={() => setActive(item.id)}
-            className={`flex items-center px-3 py-2 rounded-lg text-sm font-medium transition-all
-              ${active === item.id ? "bg-[#0066cc] text-white" : "hover:bg-[#004080] text-gray-200"}
-            `}
-          >
+          <NavLink
+  key={item.id}
+  to={item.path}
+  className={({ isActive }) =>
+    `flex items-center px-3 py-2 rounded-lg text-sm font-medium transition-all ${
+      isActive ? "bg-[#0066cc] text-white" : "hover:bg-[#004080] text-gray-200"
+    }`
+  }
+>
             <img src={item.icon} alt={item.label} className="h-5 w-5" />
             {isOpen && <span className="ml-3 uppercase">{item.label}</span>}
-          </button>
+          </NavLink>
         ))}
       </nav>
     </aside>

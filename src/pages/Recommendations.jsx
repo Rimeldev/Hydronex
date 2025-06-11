@@ -1,0 +1,121 @@
+import { useState } from "react";
+import {
+  ExclamationTriangleIcon,
+  BellAlertIcon,
+  InformationCircleIcon,
+  ChevronUpIcon,
+  ChevronDownIcon,
+} from "@heroicons/react/24/outline";
+import historic from "../assets/icons/history.png";
+import recom from "../assets/icons/recom.png";
+
+export default function Recommandations({ alerts = [] }) {
+  const [showHistory, setShowHistory] = useState(true);
+
+  const sortedAlerts = [...alerts].sort(
+    (a, b) => new Date(b.date) - new Date(a.date)
+  );
+  const recentAlert = sortedAlerts.length > 0 ? sortedAlerts[0] : null;
+  const history = sortedAlerts.slice(1);
+
+  const getAlertStyle = (type) => {
+    switch (type) {
+      case "warning":
+        return {
+          color: "bg-yellow-100 border-yellow-400 text-yellow-800",
+          icon: <ExclamationTriangleIcon className="w-6 h-6 text-yellow-500" />,
+        };
+      case "alert":
+        return {
+          color: "bg-red-100 border-red-400 text-red-800",
+          icon: <BellAlertIcon className="w-6 h-6 text-red-500" />,
+        };
+      case "info":
+        return {
+          color: "bg-green-100 border-green-400 text-green-800",
+          icon: <InformationCircleIcon className="w-6 h-6 text-green-500" />,
+        };
+      default:
+        return {
+          color: "bg-gray-100 border-gray-300 text-gray-800",
+          icon: <InformationCircleIcon className="w-6 h-6 text-gray-500" />,
+        };
+    }
+  };
+
+  return (
+    <div className="p-6 max-w-5xl mx-auto space-y-10 min-h-screen flex flex-col">
+      <div>
+        <h1 className="text-3xl font-bold mb-4 text-gray-800 flex items-center gap-2">
+  <img src={recom} alt="Icon" className="w-20 h-20" />
+  Recommandation récente
+</h1>
+        {recentAlert ? (
+          <div
+            className={`transition-transform transform hover:scale-[1.01] border-l-4 p-6 rounded-xl shadow-md flex gap-4 items-start ${getAlertStyle(recentAlert.type).color}`}
+          >
+            <div className="mt-1">{getAlertStyle(recentAlert.type).icon}</div>
+            <div>
+              <h2 className="text-lg font-semibold">{recentAlert.title}</h2>
+              <p className="mt-1 text-sm">{recentAlert.message}</p>
+              <p className="mt-2 text-sm italic text-gray-700">
+                💡 {recentAlert.recommendation}
+              </p>
+              <p className="mt-1 text-xs text-gray-500">
+                📅 {new Date(recentAlert.date).toLocaleString()}
+              </p>
+            </div>
+          </div>
+        ) : (
+          <p className="italic text-gray-500">Aucune alerte enregistrée.</p>
+        )}
+      </div>
+
+      <section>
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-3xl font-bold mb-4 text-gray-800 flex items-center gap-2">
+  <img src={historic} alt="Icon" className="w-20 h-20" /> Historique des alertes</h2>
+          <button
+            onClick={() => setShowHistory(!showHistory)}
+            className="flex items-center text-sm text-blue-600 hover:text-blue-800 transition-colors"
+          >
+            {showHistory ? (
+              <>
+                <ChevronUpIcon className="w-5 h-5 mr-1" />
+                Masquer
+              </>
+            ) : (
+              <>
+                <ChevronDownIcon className="w-5 h-5 mr-1" />
+                Afficher
+              </>
+            )}
+          </button>
+        </div>
+
+        {showHistory && history.length > 0 ? (
+          <div className="space-y-4 max-h-[350px] overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent transition-all duration-300">
+            {history.map((alert) => (
+              <div
+                key={alert.id}
+                className={`transition-transform transform hover:scale-[1.01] border-l-4 p-4 rounded-lg shadow-sm flex items-start gap-3 ${getAlertStyle(alert.type).color}`}
+              >
+                <div className="mt-1">{getAlertStyle(alert.type).icon}</div>
+                <div>
+                  <h3 className="font-semibold">{alert.title}</h3>
+                  <p className="text-sm">{alert.message}</p>
+                  <p className="italic text-xs text-gray-700 mt-1">{alert.recommendation}</p>
+                  <p className="text-xs text-gray-500 mt-1">
+                    📅 {new Date(alert.date).toLocaleString()}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : showHistory ? (
+          <p className="italic text-gray-500">Aucun historique disponible.</p>
+        ) : null}
+      </section>
+    </div>
+  );
+}

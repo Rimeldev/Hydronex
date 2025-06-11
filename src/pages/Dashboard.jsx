@@ -24,7 +24,14 @@ const parameterData = [
 ];
 
 export default function Dashboard() {
-  const lastAlert = null;
+  const lastAlert ={
+    id: 1,
+    title: "Risque de turbidité élevé",
+    message: "Évitez les intrants chimiques pour l’instant.",
+    recommendation: "Utilisez de l’eau filtrée dans les prochaines 12h.",
+    type: "alert",
+    date: "2025-06-09T10:00:00Z",
+  };
   return (
     <div className="space-y-6">
        {/* Filtres en haut */}
