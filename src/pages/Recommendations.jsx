@@ -5,9 +5,9 @@ import {
   InformationCircleIcon,
   ChevronUpIcon,
   ChevronDownIcon,
+  ArrowPathIcon,
+  SparklesIcon,
 } from "@heroicons/react/24/outline";
-import historic from "../assets/icons/history.png";
-import recom from "../assets/icons/recom.png";
 
 export default function Recommandations({ alerts = [] }) {
   const [showHistory, setShowHistory] = useState(true);
@@ -45,11 +45,12 @@ export default function Recommandations({ alerts = [] }) {
 
   return (
     <div className="p-6 max-w-5xl mx-auto space-y-10 min-h-screen flex flex-col">
+      {/* Recommandation récente */}
       <div>
-        <h1 className="text-3xl font-bold mb-4 text-gray-800 flex items-center gap-2">
-  <img src={recom} alt="Icon" className="w-20 h-20" />
-  Recommandation récente
-</h1>
+        <h1 className="text-3xl font-bold mb-4 text-gray-800 flex items-center gap-3">
+  <ExclamationTriangleIcon className="w-8 h-8 text-red-600" />
+  Alerte récente
+        </h1>
         {recentAlert ? (
           <div
             className={`transition-transform transform hover:scale-[1.01] border-l-4 p-6 rounded-xl shadow-md flex gap-4 items-start ${getAlertStyle(recentAlert.type).color}`}
@@ -71,10 +72,13 @@ export default function Recommandations({ alerts = [] }) {
         )}
       </div>
 
+      {/* Historique des alertes */}
       <section>
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-3xl font-bold mb-4 text-gray-800 flex items-center gap-2">
-  <img src={historic} alt="Icon" className="w-20 h-20" /> Historique des alertes</h2>
+          <h2 className="text-3xl font-bold mb-4 text-gray-800 flex items-center gap-3">
+            <ArrowPathIcon className="w-8 h-8 text-purple-600" />
+            Historique des alertes
+          </h2>
           <button
             onClick={() => setShowHistory(!showHistory)}
             className="flex items-center text-sm text-blue-600 hover:text-blue-800 transition-colors"

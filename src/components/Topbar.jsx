@@ -45,14 +45,6 @@ export default function Topbar({ toggleSidebar }) {
 
       {/* Batterie + Date + Heure */}
       <div className="flex items-center gap-6 text-sm">
-        {/* Batterie */}
-        <div className="flex items-center gap-3">
-          <div className="relative w-10 h-4 bg-white rounded-sm">
-            <div className="w-[30%] h-full bg-green-500 rounded-sm" />
-            <div className="absolute top-1 left-full w-1.5 h-2 bg-white rounded-r-sm ml-0.5" />
-          </div>
-          <span>30%</span>
-        </div>
 
         {/* Date */}
         <span>{formattedDate}</span>

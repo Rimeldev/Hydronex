@@ -54,12 +54,12 @@ export default function RecentAlertCard({ alert }) {
   <div className="fixed inset-0 z-[9999] flex items-center justify-center">
     {/* Overlay sombre flou */}
     <div
-      className="absolute inset-0 bg-black/20 backdrop-blur-sm"
+      className="absolute inset-0 z-50 bg-black/50 backdrop-brightness-90 "
       onClick={() => setShowPopup(false)}
     />
 
     {/* Carte du popup */}
-    <div className="relative z-[10000] bg-white border shadow-lg rounded-lg p-6 w-full max-w-sm">
+    <div className="relative z-[10000] bg-white shadow-lg rounded-lg p-6 w-full max-w-sm">
       <h3 className="text-lg font-semibold mb-4">Recevoir les alertes</h3>
       <form onSubmit={handleSubmit} className="space-y-3">
         <input

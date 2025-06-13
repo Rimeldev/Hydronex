@@ -4,7 +4,9 @@ import Home from './pages/HomePage';
 import Dashboard from './pages/Dashboard';
 import Recommendations from './pages/Recommendations';
 import Login from './pages/Login';
+import HydroBot from './pages/HydroBot';
 import DashboardLayout from './layouts/DashboardLayout';
+import DevicesPage from './pages/DevicesPage';
 import 'leaflet/dist/leaflet.css';
 
 const alerts = [
@@ -87,12 +89,31 @@ function App() {
           path="/dashboard"
           element={
             <DashboardLayout>
-              <Dashboard />
+             <Dashboard /> 
+            </DashboardLayout>
+          }
+        />
+         <Route
+          path="/DevicesPage"
+          element={
+            <DashboardLayout>
+              <DevicesPage />
+            </DashboardLayout>
+          }
+        />
+
+        <Route
+          path="/HydroBot"
+          element={
+            <DashboardLayout>
+              <HydroBot />
             </DashboardLayout>
           }
         />
 
       </Routes>
+
+      
   );
 }
 
