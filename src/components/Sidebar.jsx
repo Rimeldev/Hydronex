@@ -13,7 +13,7 @@ const navItems = [
   { id: "dashboard", label: "Dashboard", icon: DashboardIcon, path: "/dashboard" },
   { id: "devices", label: "Devices", icon: DevicesIcon, path: "/DevicesPage" },
   { id: "alerts", label: "Alerts", icon: AlertIcon, path: "/Recommendations" },
-  { id: "supports", label: "Supports", icon: SupportIcon, path: "/supports" },
+  { id: "supports", label: "Supports", icon: SupportIcon, path: "/Support" },
   { id: "hydrobot", label: "HydroBot", icon: HydroBotIcon, path: "/hydrobot" },
 ];
 

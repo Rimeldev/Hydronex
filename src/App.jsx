@@ -1,12 +1,11 @@
 
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './pages/HomePage';
+import { BrowserRouter as Router, Routes, Route,Navigate } from 'react-router-dom';
 import Dashboard from './pages/Dashboard';
 import Recommendations from './pages/Recommendations';
-import Login from './pages/Login';
 import HydroBot from './pages/HydroBot';
 import DashboardLayout from './layouts/DashboardLayout';
 import DevicesPage from './pages/DevicesPage';
+import Support from './pages/Support';
 import 'leaflet/dist/leaflet.css';
 
 const alerts = [
@@ -80,8 +79,10 @@ function App() {
   return (
        
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Navigate to="/dashboard" replace />} />
+        <Route path="/" element={ <DashboardLayout>
+             <Dashboard />
+            </DashboardLayout>} />
         <Route path="/Recommendations" element={<DashboardLayout><Recommendations alerts={alerts} /></DashboardLayout>} />
           
            {/* Pages avec layout */}
@@ -89,7 +90,7 @@ function App() {
           path="/dashboard"
           element={
             <DashboardLayout>
-             <Dashboard /> 
+             <Dashboard />
             </DashboardLayout>
           }
         />
@@ -111,6 +112,14 @@ function App() {
           }
         />
 
+  <Route
+          path="/Support"
+          element={
+            <DashboardLayout>
+              <Support />
+            </DashboardLayout>
+          }
+        />
       </Routes>
 
       
