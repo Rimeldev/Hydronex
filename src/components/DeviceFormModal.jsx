@@ -1,34 +1,50 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { X } from "lucide-react";
 
-export default function DeviceFormModal({ onClose, onSubmit }) {
+export default function DeviceFormModal({ onClose, onSubmit, device = null, isEdit = false }) {
   const [form, setForm] = useState({
-    name: "",
-    location: "",
-    status: "active", // valeur par défaut
+    nom: "",
+    localisation: "",
+    statut: "actif",
   });
 
+  // Pré-remplir le formulaire si on est en mode édition
+  useEffect(() => {
+    if (isEdit && device) {
+      setForm({
+        nom: device.nom || "",
+        localisation: device.localisation || "",
+        statut: device.statut || "actif",
+      });
+    }
+  }, [isEdit, device]);
+
+  // Gestion du changement de champ
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
+  // Soumission du formulaire
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!form.name || !form.location || !form.status) {
-      alert("Veuillez remplir tous les champs obligatoires.");
+    if (!form.nom || !form.localisation || !form.statut) {
+      alert("Tous les champs sont requis.");
       return;
     }
 
-    onSubmit({ ...form });
-    onClose();
+    const payload = isEdit && device
+      ? { ...form, id: device.id } // inclure l'id en mode édition
+      : form;
+
+    onSubmit(payload); // Appel du handler parent
   };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
       <div className="bg-white rounded-xl shadow-lg w-full max-w-lg p-6 relative">
-        {/* Close Button */}
+        {/* Bouton de fermeture */}
         <button
           onClick={onClose}
           className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
@@ -36,52 +52,55 @@ export default function DeviceFormModal({ onClose, onSubmit }) {
           <X className="w-5 h-5" />
         </button>
 
-        {/* Title */}
+        {/* Titre */}
         <h2 className="text-xl font-semibold text-gray-800 mb-4">
-          Ajouter un nouveau dispositif
+          {isEdit ? "Modifier le dispositif" : "Ajouter un nouveau dispositif"}
         </h2>
 
-        {/* Form */}
+        {/* Formulaire */}
         <form onSubmit={handleSubmit} className="space-y-4">
+          {/* Champ Nom */}
           <div>
             <label className="block text-sm text-gray-600 mb-1">Nom du dispositif</label>
             <input
               type="text"
-              name="name"
-              value={form.name}
+              name="nom"
+              value={form.nom}
               onChange={handleChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
               required
             />
           </div>
 
+          {/* Champ Localisation */}
           <div>
             <label className="block text-sm text-gray-600 mb-1">Localisation</label>
             <input
               type="text"
-              name="location"
-              value={form.location}
+              name="localisation"
+              value={form.localisation}
               onChange={handleChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
               required
             />
           </div>
 
+          {/* Champ Statut */}
           <div>
             <label className="block text-sm text-gray-600 mb-1">Statut</label>
             <select
-              name="status"
-              value={form.status}
+              name="statut"
+              value={form.statut}
               onChange={handleChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
               required
             >
-              <option value="active">Actif</option>
-              <option value="inactive">Inactif</option>
+              <option value="actif">actif</option>
+              <option value="inactif">inactif</option>
             </select>
           </div>
 
-          {/* Submit Button */}
+          {/* Boutons */}
           <div className="flex justify-end gap-3 pt-4">
             <button
               type="button"
@@ -94,7 +113,7 @@ export default function DeviceFormModal({ onClose, onSubmit }) {
               type="submit"
               className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition"
             >
-              Enregistrer
+              {isEdit ? "Mettre à jour" : "Enregistrer"}
             </button>
           </div>
         </form>
