@@ -173,7 +173,7 @@ useEffect(() => {
           icon={salinityIcon}
           value={parameterData.salinity ?? "-"}
           unit="psu"
-          label="Salinity"
+          label="Salinité"
           gradientFrom="#ffe259"
           gradientTo="#ffa751"
         />
@@ -181,7 +181,7 @@ useEffect(() => {
           icon={temperatureIcon}
           value={parameterData.temperature ?? "-"}
           unit="°C"
-          label="Temperature"
+          label="Température"
           gradientFrom="#ff9a9e"
           gradientTo="#fad0c4"
         />
@@ -196,7 +196,7 @@ useEffect(() => {
           icon={turbidityIcon}
           value={parameterData.turbidity ?? "-"}
           unit="NTU"
-          label="Turbidity"
+          label="Turbidité"
           gradientFrom="#89f7fe"
           gradientTo="#66a6ff"
         />

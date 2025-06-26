@@ -11,8 +11,8 @@ import { NavLink } from "react-router-dom";
 
 const navItems = [
   { id: "dashboard", label: "Dashboard", icon: DashboardIcon, path: "/dashboard" },
-  { id: "devices", label: "Devices", icon: DevicesIcon, path: "/DevicesPage" },
-  { id: "alerts", label: "Alerts", icon: AlertIcon, path: "/Recommendations" },
+  { id: "devices", label: "Dispositifs", icon: DevicesIcon, path: "/DevicesPage" },
+  { id: "alerts", label: "Alertes", icon: AlertIcon, path: "/Recommendations" },
   { id: "supports", label: "Supports", icon: SupportIcon, path: "/Support" },
   { id: "hydrobot", label: "HydroBot", icon: HydroBotIcon, path: "/hydrobot" },
 ];
