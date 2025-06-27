@@ -31,7 +31,7 @@ export default function Support() {
             dissous, et la salinité.
           </li>
           <li>
-            ☁️ <strong>Transmission des données :</strong> les données sont transmises via réseau (Wi-Fi, GSM ou LoRa)
+            ☁️ <strong>Transmission des données :</strong> les données sont transmises via réseau (Wi-Fi)
             vers la plateforme centrale.
           </li>
           <li>
@@ -77,7 +77,7 @@ export default function Support() {
           Pour toute question technique ou demande d’assistance, veuillez nous contacter :
         </p>
         <ul className="mt-2 text-gray-700 text-sm">
-          <li>📧 Email : <a href="mailto:support@hydronex.com" className="text-blue-600 underline">support@hydronex.com</a></li>
+          <li>📧 Email : <a href="shydronex@gmail.com" className="text-blue-600 underline">shydronex@gmail.com</a></li>
           <li>📞 Téléphone : +229 58 22 63 60</li>
         </ul>
       </section>
