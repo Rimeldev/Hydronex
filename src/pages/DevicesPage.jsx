@@ -7,6 +7,7 @@ import DeviceDetailsModal from "../components/DeviceDetailsModal";
 import DeviceFormModal from "../components/DeviceFormModal";
 import PasswordPromptModal from "../components/PasswordPromptModal";
 import LoadingMessage from "../components/Spinner";
+import LocationDisplay from "../components/LocationDisplay"; // Nouveau composant
 
 import { fetchDevices, addDevice, updateDevice } from "../services/deviceService";
 
@@ -162,7 +163,13 @@ export default function DevicesPage() {
                 {devices.map((device) => (
                   <tr key={device.id} className="hover:bg-gray-50">
                     <td className="px-6 py-4">{device.nom}</td>
-                    <td className="px-6 py-4">{device.localisation}</td>
+                    <td className="px-6 py-4">
+                      {/* Remplacé {device.localisation} par le composant LocationDisplay */}
+                      <LocationDisplay 
+                        coordinates={device.localisation} 
+                        maxLength={45}
+                      />
+                    </td>
                     <td className="px-6 py-4">
                       <span
                         className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${

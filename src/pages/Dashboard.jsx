@@ -8,6 +8,7 @@ import ToastNotification from "../components/ToastNotification";
 
 
 
+
 import salinityIcon from "../assets/icons/salinity.png";
 import temperatureIcon from "../assets/icons/temperature.png";
 import phIcon from "../assets/icons/ph.png";
@@ -204,7 +205,8 @@ useEffect(() => {
 
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
         <ParameterChart data={chartData} />
-        <MapSection />
+        {/* Passer le dispositif sélectionné à la carte */}
+        <MapSection selectedDeviceId={filters.dispositifId} />
       </div>
 
     </div>
